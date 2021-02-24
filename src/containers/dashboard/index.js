@@ -6,7 +6,12 @@ import { useStyles } from "./styles";
 
 export const Dashboard = () => {
   const [selectedFilters, handleSelectedFilters] = useState({});
-  const { container, buttonStyles, title } = useStyles();
+  const {
+    container,
+    buttonStyles,
+    title,
+    selectedFiltersContainer,
+  } = useStyles();
 
   const activeHaveFilters = useMemo(
     () =>
@@ -35,19 +40,13 @@ export const Dashboard = () => {
         selectedFilters={selectedFilters}
         handleSelectedFilters={handleSelectedFilters}
       />
-      <Box
-        display="flex"
-        alignItems="center"
-        flex="1"
-        paddingRight="50px"
-        paddingLeft="50px"
-      >
-        <Box display="flex">
+      <Box className={selectedFiltersContainer}>
+        <Grid container spacing={1} wrap="wrap">
           <Typography variant="h5" className={title}>
             Applied Filters:&nbsp;
           </Typography>
           {activeHaveFilters ? (
-            <Grid container spacing={1} wrap>
+            <>
               {Object.keys(selectedFilters).map((key) => (
                 <React.Fragment key={key}>
                   {selectedFilters[key].map(({ id, title }) => (
@@ -70,11 +69,11 @@ export const Dashboard = () => {
                   Clear All
                 </Button>
               </Grid>
-            </Grid>
+            </>
           ) : (
             <Typography variant="h5">-none-</Typography>
           )}
-        </Box>
+        </Grid>
       </Box>
     </div>
   );

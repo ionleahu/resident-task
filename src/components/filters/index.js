@@ -11,7 +11,7 @@ export const Filters = ({ selectedFilters, handleSelectedFilters }) => {
   const data = useMemo(
     () =>
       Object.keys(filtersData).reduce(
-        (acc, key) => [...acc, { name: [key], options: filtersData[key] }],
+        (acc, key) => [...acc, { name: key, options: filtersData[key] }],
         []
       ),
     []
@@ -35,6 +35,11 @@ export const Filters = ({ selectedFilters, handleSelectedFilters }) => {
     return data;
   }, [isXs]);
 
+  const moreSelectedFilters = useMemo(() => {
+    const { color, size, ...rest } = selectedFilters;
+    return rest;
+  }, [selectedFilters]);
+
   return (
     <Grid container spacing={1} className={container}>
       {items.map((filter) => (
@@ -50,7 +55,7 @@ export const Filters = ({ selectedFilters, handleSelectedFilters }) => {
         <Grid item xs={4} sm="auto">
           <MoreFilters
             filters={moreItems}
-            selectedFilters={selectedFilters}
+            selectedFilters={moreSelectedFilters}
             handleSelectedFilters={handleSelectedFilters}
           />
         </Grid>

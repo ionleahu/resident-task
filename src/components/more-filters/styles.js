@@ -27,12 +27,12 @@ export const useStyles = makeStyles(({ breakpoints: { down } }) => ({
     [down("xs")]: {
       maxWidth: "calc(100vw - 10px)",
       left: "5px !important",
+      maxHeight: 500,
     },
   },
   optionStyles: {
     cursor: "pointer",
   },
-
   buttonStyles: {
     textTransform: "none",
   },

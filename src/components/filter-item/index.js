@@ -90,7 +90,7 @@ export const FilterItem = ({
         }}
       >
         <Box display="flex" flexDirection="column">
-          <Grid container spacing={1} wrap>
+          <Grid container spacing={1} wrap="wrap">
             {data?.options.map((option) => (
               <Grid item xs="auto" key={option.id}>
                 <OptionItem
